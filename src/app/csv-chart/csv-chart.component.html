@@ -1,0 +1,113 @@
+<div class="container">
+  <!-- Filtros -->
+  <div class="filters">
+    <div class="form-group">
+      <label for="empresaSelect">Empresa:</label>
+      <select id="empresaSelect" class="form-control" (change)="cambiarEmpresa($event)">
+        <option value="">Todas</option>
+        <option *ngFor="let empresa of empresas" [value]="empresa" [selected]="empresa === empresaSeleccionada">{{ empresa }}</option>
+      </select>
+    </div>
+    
+    <div class="form-group">
+      <label for="tablaSelect">Tabla:</label>
+      <select id="tablaSelect" class="form-control" (change)="cambiarTabla($event)">
+        <option value="">Todas</option>
+        <option *ngFor="let tabla of tablas" [value]="tabla" [selected]="tabla === tablaSeleccionada">{{ tabla }}</option>
+      </select>
+    </div>
+
+    <!-- Filtro para rango de tiempo -->
+    <div class="form-group">
+      <label for="rangoTiempoSelect">Rango de tiempo:</label>
+      <select id="rangoTiempoSelect" class="form-control" (change)="cambiarRangoTiempo($event)">
+        <option value="30">Últimos 30 días</option>
+        <option value="90">Últimos 90 días</option>
+        <option value="180">Últimos 180 días</option>
+        <option value="365">Últimos 365 días</option>
+      </select>
+    </div>
+  </div>
+  
+  <!-- Dashboard con las gráficas -->
+  <div class="dashboard">
+    <div class="chart large-chart">
+      <h3 class="graficas">Gráfica de Barras</h3>
+      <canvas #barChart></canvas>
+    </div>
+    <div class="chart large-chart">
+      <h3 class="graficas">Gráfico de Barras Apiladas</h3>
+      <canvas #basicBarChart></canvas>
+    </div>
+    <div class="chart">
+      <h3 class="">Gráfica de Rosquilla</h3>
+      <canvas #lineChart></canvas>
+    </div>
+  </div>
+
+  <!-- Círculos de progreso -->
+  <div class="progress-circles">
+    <div class="circle-progress">
+      <h4 class="circle">Seus</h4>
+      <circle-progress
+        [percent]="100"
+        [radius]="50"
+        [outerStrokeWidth]="15"
+        [outerStrokeColor]="'#4882c2'"
+        [innerStrokeWidth]="5"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"></circle-progress>
+    </div>
+    <div class="circle-progress">
+      <h4 class="circle">Aurora</h4>
+      <circle-progress
+        [percent]="auroraPercentage"
+        [radius]="50"
+        [outerStrokeWidth]="15"
+        [outerStrokeColor]="'#50c878'"
+        [innerStrokeWidth]="5"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"></circle-progress>
+    </div>
+    <div class="circle-progress">
+      <h4 class="circle">Salesforce</h4>
+      <circle-progress
+        [percent]="salesforcePercentage"
+        [radius]="50"
+        [outerStrokeWidth]="15"
+        [outerStrokeColor]="'#ffcc00'"
+        [innerStrokeWidth]="5"
+        [innerStrokeColor]="'#e7e8ea'"
+        [animation]="true"
+        [animationDuration]="300"></circle-progress>
+    </div>
+  </div>
+
+  <!-- Tabla de datos seleccionados -->
+  <div class="data-table" *ngIf="dataCargada">
+    <h3 class="datos-tab">Datos seleccionados:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Empresa</th>
+          <th>Tabla</th>
+          <th>Seus</th>
+          <th>Aurora</th>
+          <th>Salesforce</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of datosCsv | slice:0:5">
+          <td>{{ item.EMPRESA }}</td>
+          <td>{{ item.TABLA }}</td>
+          <td>{{ item.Seus }}</td>
+          <td>{{ item.Aurora }}</td>
+          <td>{{ item.Salesforce }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <p *ngIf="datosCsv.length > 5" class="note">Se muestran solo los primeros 5 registros.</p>
+  </div>
+</div>
