@@ -1,14 +1,16 @@
 // app.module.ts
 import { NgModule } from '@angular/core';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { NgCircleProgressModule } from 'ng-circle-progress';
+import { IgxBannerModule } from 'igniteui-angular';
 
 
 import { AppComponent } from './app.component';
 import { CsvChartComponent } from './csv-chart/csv-chart.component';
+
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { CsvChartComponent } from './csv-chart/csv-chart.component';
 
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    IgxBannerModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

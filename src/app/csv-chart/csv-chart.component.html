@@ -1,4 +1,42 @@
 <div class="container">
+  <!-- Alerta de diferencias -->
+  <!-- ...existing code... -->
+  <div class="d-flex justify-content-end mb-3">
+    <button
+      type="button"
+      class="btn btn-outline-primary"
+      (click)="refreshData()"
+    >
+      Refresh
+        
+    </button>
+  </div>
+  <div
+  class="alert alert-warning alert-dismissible fade show"
+  role="alert"
+  *ngIf="alertaIntegracion"
+>
+  <strong>¡Advertencia!</strong> Hay diferencias significativas en los datos de integración.
+  <!-- Botón para notificar vía email (antes del botón Cerrar) -->
+  <button
+    type="button"
+    class="btn btn-outline-warning"
+    (click)="notificarViaEmail()"
+    
+  >
+    Notificar vía email
+  </button>
+  <button
+    type="button"
+    class="btn btn-outline-danger"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+    (click)="cerrarBanner()"
+  >
+    Cerrar
+  </button>
+</div>
+
   <!-- Filtros -->
   <div class="filters">
     <div class="form-group">
@@ -40,7 +78,7 @@
       <canvas #basicBarChart></canvas>
     </div>
     <div class="chart">
-      <h3 class="">Gráfica de Rosquilla</h3>
+      <h3 class="graficas">Gráfica de Rosquilla</h3>
       <canvas #lineChart></canvas>
     </div>
   </div>
@@ -48,7 +86,7 @@
   <!-- Círculos de progreso -->
   <div class="progress-circles">
     <div class="circle-progress">
-      <h4 class="circle">Seus</h4>
+      <h4 class="circle">Oracle</h4>
       <circle-progress
         [percent]="100"
         [radius]="50"
@@ -57,7 +95,8 @@
         [innerStrokeWidth]="5"
         [innerStrokeColor]="'#e7e8ea'"
         [animation]="true"
-        [animationDuration]="300"></circle-progress>
+        [animationDuration]="300">
+      </circle-progress>
     </div>
     <div class="circle-progress">
       <h4 class="circle">Aurora</h4>
@@ -69,7 +108,8 @@
         [innerStrokeWidth]="5"
         [innerStrokeColor]="'#e7e8ea'"
         [animation]="true"
-        [animationDuration]="300"></circle-progress>
+        [animationDuration]="300">
+      </circle-progress>
     </div>
     <div class="circle-progress">
       <h4 class="circle">Salesforce</h4>
@@ -81,7 +121,8 @@
         [innerStrokeWidth]="5"
         [innerStrokeColor]="'#e7e8ea'"
         [animation]="true"
-        [animationDuration]="300"></circle-progress>
+        [animationDuration]="300">
+      </circle-progress>
     </div>
   </div>
 
@@ -93,7 +134,7 @@
         <tr>
           <th>Empresa</th>
           <th>Tabla</th>
-          <th>Seus</th>
+          <th>Oracle</th>
           <th>Aurora</th>
           <th>Salesforce</th>
         </tr>

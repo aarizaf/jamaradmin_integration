@@ -25,7 +25,7 @@ export class CsvChartComponent implements OnInit, AfterViewInit {
 
   // Datos precargados
   datosCsv: DatosCSV[] = [
-    { FECHA: "2025-03-17", EMPRESA: "JA", TABLA: "NOT_COTIZACIONES_ENC", Seus: 12, Aurora: 10, Salesforce: 7 },
+    { FECHA: "2025-03-17", EMPRESA: "JA", TABLA: "NOT_COTIZACIONES_ENC", Seus: 30, Aurora: 20, Salesforce: 20 },
     { FECHA: "2025-03-17", EMPRESA: "JA", TABLA: "REM_ENC", Seus: 9, Aurora: 9, Salesforce: 9 },
     { FECHA: "2025-03-17", EMPRESA: "JA", TABLA: "CART_ENC", Seus: 4, Aurora: 4, Salesforce: 4 },
     { FECHA: "2025-03-17", EMPRESA: "JA", TABLA: "FAC_ENC", Seus: 220, Aurora: 1, Salesforce: 2 },
@@ -50,6 +50,9 @@ export class CsvChartComponent implements OnInit, AfterViewInit {
   // Propiedades para los porcentajes de los círculos de progreso
   auroraPercentage = 0;
   salesforcePercentage = 0;
+
+  // Propiedad para mostrar el banner de alerta
+  alertaIntegracion: boolean = false;
 
   constructor() {}
 
@@ -98,6 +101,38 @@ export class CsvChartComponent implements OnInit, AfterViewInit {
     this.renderizarGrafica();
   }
 
+  // Método para verificar diferencias y mostrar alerta
+  private verificarDiferencia(datosPromedio: { Seus: number; Aurora: number; Salesforce: number }): void {
+    const diffSeusAurora = Math.abs(datosPromedio.Seus - datosPromedio.Aurora);
+    const diffAuroraSalesforce = Math.abs(datosPromedio.Aurora - datosPromedio.Salesforce);
+    const diffSeusSalesforce = Math.abs(datosPromedio.Seus - datosPromedio.Salesforce);
+  
+    // Mostrar el banner solo si alguna diferencia es mayor a un umbral (por ejemplo, 10)
+    this.alertaIntegracion = diffSeusAurora >= 10 || diffAuroraSalesforce >= 10 || diffSeusSalesforce >= 10;
+  
+    console.log('alertaIntegracion:', this.alertaIntegracion);
+  }
+
+  // Método para cerrar el banner
+  cerrarBanner(): void {
+    this.alertaIntegracion = false;
+  }
+
+  notificarViaEmail(): void {
+    const asunto = encodeURIComponent('Notificación de diferencias en los datos');
+    const cuerpo = encodeURIComponent(
+      `Hola,\n\nSe han detectado diferencias significativas en los datos de integración.\n\nPor favor, revisa los detalles.\n\nGracias.`
+    );
+    const destinatario = 'correo@ejemplo.com'; // Cambia esto por el correo del destinatario
+  
+    // Abrir el cliente de correo con el enlace mailto
+    window.location.href = `mailto:${destinatario}?subject=${asunto}&body=${cuerpo}`;
+  }
+
+  refreshData(): void {
+    window.location.reload();
+  }
+
   renderizarGrafica() {
     // Destruir gráficas existentes
     if (this.charts.barChart) {
@@ -136,6 +171,9 @@ export class CsvChartComponent implements OnInit, AfterViewInit {
       datosPromedio.Aurora /= datosFiltrados.length;
       datosPromedio.Salesforce /= datosFiltrados.length;
     }
+
+    // Verificar diferencias y mostrar alerta si es necesario
+    this.verificarDiferencia(datosPromedio);
 
     // Calcular porcentajes para los círculos de progreso
     const totalSeus = datosPromedio.Seus || 1; // Evitar división por cero

@@ -1,6 +1,4 @@
-/* filepath: c:\Users\afperez\mi-proyecto-angular\src\app\csv-chart\csv-chart.component.scss */
 
-/* Importar la fuente desde Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
 /* Aplicar la fuente globalmente */
@@ -22,20 +20,20 @@ body {
 }
 
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start; /* Alinea el contenido a la izquierda */
-    gap: 20px; /* Espacio entre el logo y el título */
-    margin-bottom: 30px;
-    padding: 10px 0;
-    border-bottom: 2px solid #e0e0e0;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alinea el contenido a la izquierda */
+  gap: 20px; /* Espacio entre el logo y el título */
+  margin-bottom: 30px;
+  padding: 10px 0;
+  border-bottom: 2px solid #e0e0e0;
+}
 
 .logo {
   width: 50px;
   height: 50px;
   object-fit: contain;
-  margin-right: 10px; 
+  margin-right: 10px;
 }
 
 h2 {
@@ -46,12 +44,12 @@ h2 {
 }
 
 h1 {
-    font-family: 'Roboto', sans-serif;
-    font-size: 28px;
-    font-weight: 700;
-    color: #717171;
-    margin: 0;
-  }
+  font-family: 'Roboto', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #717171;
+  margin: 0;
+}
 
 .filters {
   margin-bottom: 20px;
@@ -73,16 +71,25 @@ h1 {
   background-color: #f9f9f9;
   transition: border-color 0.3s;
 }
-.data-table{
-    font-family: 'Roboto', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    color: #717172;
-    margin: 0 0 30px 0;
-    padding: auto; 
-    text-align: center; 
-    text-transform: uppercase;
-    letter-spacing: 1px;
+
+.data-table {
+  font-family: 'Roboto', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  color: #717172;
+  margin: 0 0 30px 0;
+  padding: auto;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.filters {
+  display: flex;
+  padding: 10px 0;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 }
 
 .filters select:focus {
@@ -133,7 +140,8 @@ canvas {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.data-table th, .data-table td {
+.data-table th,
+.data-table td {
   border: 1px solid #ddd;
   padding: 12px;
   text-align: center;
@@ -162,31 +170,106 @@ canvas {
 
 .progress-circles {
   display: flex;
-  justify-content: space-around; 
-  align-items: center; 
+  justify-content: space-around;
+  align-items: center;
   margin-top: 20px;
 }
 
 .circle-progress {
-  text-align: center; 
+  text-align: center;
 }
 
-.circle{
+.circle {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
   font-weight: 700;
   color: #3e3e3e;
-  text-align: center; 
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.graficas{
-  font-family: 'Roboto', sans-serif;
-  font-size: 15px;
-  font-weight: 700;
-  color: #3e3e3e;
-  text-align: center; 
+  text-align: center;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
+.graficas {
+  font-family: 'Roboto', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3e3e3e;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Banner personalizado (opcional, si se desea un estilo distinto al de Bootstrap) */
+.alert-banner {
+  background-color: #ffcc00; /* Fondo amarillo */
+  color: #000; /* Texto negro */
+  font-weight: bold; /* Texto en negrita */
+  padding: 25px; /* Espaciado interno */
+  border-radius: 5px; /* Bordes redondeados */
+  margin-bottom: 20px; /* Espaciado inferior */
+  text-align: center; /* Centrar el texto */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IgniteUI (no aplicable si no se usa) */
+.igx-banner__message {
+  font-size: 36px; /* Tamaño del texto */
+  line-height: 1.5; /* Altura de línea */
+  color: #000; /* Asegúrate de que el texto sea negro */
+}
+
+.igx-banner__actions {
+  display: flex;
+  justify-content: center; 
+  margin-top: 10px; 
+}
+
+.igx-banner__actions button {
+  margin: 0 5px;
+  background-color: #fff;
+  color: #000;
+  border: 1px solid #000;
+}
+
+
+.alert {
+  margin-top: auto;
+  border-radius: 5px;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  border: 10px solid #fff3cd;
+}
+
+.btn-close {
+  width: 16px;
+  height: 16px;
+  padding: 5px;
+  border-radius: 50%;
+  opacity: 0.8;
+  background-color: #dedede;
+  transition: all 0.2s ease-in-out;
+  filter: hue-rotate(30deg);
+}
+
+.btn-close:hover,
+.btn-close:focus {
+  opacity: 1;
+  filter: none;
+  background-color: #c5c5c5;
+}
+
+.btn-outline-warning {
+  margin-right: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+}
